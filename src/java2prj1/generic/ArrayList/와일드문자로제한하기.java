@@ -49,7 +49,7 @@ public class 와일드문자로제한하기 {
 		list3.forEach(new Consumer<>() {
 			@Override
 			public void accept(String t) {
-				System.out.println(t);
+				System.out.println(t);  
 			}
 		});
 
