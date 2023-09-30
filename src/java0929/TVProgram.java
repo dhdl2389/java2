@@ -17,7 +17,7 @@ public class TVProgram {
 
 	@Override
 	public String toString() {
-		return "TVProgram [name=" + name + ", Category=" + Category + ", genre=" + genre + "]";
+		return "TVProgram [ name = " + name + ", Category = " + Category + ", genre = " + genre + " " + "]";
 	}
 
 	public String getName() {

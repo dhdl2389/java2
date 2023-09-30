@@ -27,20 +27,21 @@ public class TVProgramTest {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			System.out.println(" \n========= 추석 TV 프로그램 관리 프로그램 ========= ");
-			System.out.println("1. 프로그램 목록 보기");
+			System.out.println("\n**************************************************");
+			System.out.println(" *                추석TV 채널 관리 프로그램             *");
+			System.out.println("**************************************************");
+			System.out.println("\n1. 프로그램 목록 보기");
 			System.out.println("2. 프로그램 추가");
 			System.out.println("3. 프로그램 수정");
 			System.out.println("4. 프로그램 삭제");
 			System.out.println("5. 종료");
-			System.out.print("메뉴를 선택하세요: ");
+			System.out.print("\n메뉴를 선택하세요: ");
 
-			int choice = sc.nextInt();
-			sc.nextLine();
+			int choice = Integer.parseInt(sc.nextLine());
 
 			switch (choice) {
 			case 1:
-				displayPrograms(list);
+				showPrograms(list);
 				break;
 			case 2:
 				addProgram(list, sc);
@@ -61,44 +62,58 @@ public class TVProgramTest {
 		}
 	}
 
-	private static void displayPrograms(List<TVProgram> list) {
+	public static void showPrograms(List<TVProgram> list) {
 		System.out.println(" \n========= TV 프로그램 목록 ========= ");
 		for (TVProgram tvp : list) {
 			System.out.println(tvp);
 		}
 	}
 
-	private static void addProgram(List<TVProgram> list, Scanner sc) {
+	public static void addProgram(List<TVProgram> list, Scanner sc) {
 		System.out.println(" \n========= TV 프로그램 추가 ========= ");
-		System.out.print(" 프로그램 이름: ");
-		String name = sc.nextLine();
-		System.out.print(" 프로그램 종류: ");
-		String category = sc.nextLine();
-		System.out.print(" 프로그램 장르: ");
-		String genre = sc.nextLine();
 
-		TVProgram newProgram = new TVProgram(name, category, genre);
-		list.add(newProgram);
-		System.out.println(" 프로그램이 추가되었습니다. ");
+		while (true) {
+			System.out.print(" 프로그램 이름: ");
+			String name = sc.nextLine().trim();
+
+			if (name.length() >= 10) {
+				System.out.println("TV 프로그램의 이름은 최대 10글자까지 입력 가능합니다. 다시 입력해주세요 ");
+			} else {
+
+				System.out.print(" 프로그램 종류: ");
+				String category = sc.nextLine().trim();
+
+				System.out.print(" 프로그램 장르: ");
+				String genre = sc.nextLine().trim();
+
+				TVProgram newProgram = new TVProgram(name, category, genre);
+				list.add(newProgram);
+				System.out.println(" 프로그램이 추가되었습니다. ");
+				break;
+			}
+		}
 	}
 
-	private static void modifyProgram(List<TVProgram> list, Scanner scanner) {
+	public static void modifyProgram(List<TVProgram> list, Scanner sc) {
 		System.out.println(" \n========= TV 프로그램 수정 ========= ");
 		System.out.print(" 수정할 프로그램 이름: ");
-		String targetName = scanner.nextLine();
+		String targetName = sc.nextLine();
 
 		for (TVProgram tvp : list) {
 			if (tvp.getName().equals(targetName)) {
 				System.out.print(" 새로운 TV 프로그램 이름: ");
-				String newName = scanner.nextLine();
+				String newName = sc.nextLine();
+
 				System.out.print(" 새로운 TV 프로그램 종류: ");
-				String newCategory = scanner.nextLine();
+				String newCategory = sc.nextLine();
+
 				System.out.print(" 새로운 TV 프로그램 장르: ");
-				String newGenre = scanner.nextLine();
+				String newGenre = sc.nextLine();
 
 				tvp.setName(newName);
 				tvp.setCategory(newCategory);
 				tvp.setGenre(newGenre);
+
 				System.out.println(" TV 프로그램이 수정되었습니다. ");
 				return;
 			}
@@ -107,10 +122,11 @@ public class TVProgramTest {
 		System.out.println(" TV 프로그램을 찾을 수 없습니다. ");
 	}
 
-	private static void deleteProgram(List<TVProgram> list, Scanner scanner) {
+	public static void deleteProgram(List<TVProgram> list, Scanner sc) {
 		System.out.println(" \n=========> TV 프로그램 삭제 <========= ");
+
 		System.out.print(" 삭제할 TV 프로그램 이름: ");
-		String targetName = scanner.nextLine();
+		String targetName = sc.nextLine();
 
 		for (TVProgram tvp : list) {
 			if (tvp.getName().equals(targetName)) {
@@ -119,7 +135,6 @@ public class TVProgramTest {
 				return;
 			}
 		}
-
 		System.out.println(" TV 프로그램을 찾을 수 없습니다. ");
 	}
 }
