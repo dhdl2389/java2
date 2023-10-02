@@ -1,4 +1,4 @@
-package java2prj1.day3.stream;
+package java0929;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -234,7 +234,7 @@ class Student2 implements Comparable {
 		this.name = name;
 		this.studentNo = studentNo;
 		this.koreanScore = koreanScore;
-		this.mathScore = mathScore;
+		this.mathScore = mathScore; 
 		this.englishScore = englishScore;
 		total = koreanScore + mathScore + englishScore;
 	}
